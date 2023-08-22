@@ -1,3 +1,10 @@
+# type: ignore
+
+# exclude this file from `mypy` checking since the attribute IC86_1_dict can no longer be imported
+# this also implies that this file is currently untested, otherwise such a test would fail
+# if in the future its functionality is restored, remove the `type: ignore` comment
+
+
 """Script to convert public data files provided by IceCube for the first year
 of IC86_1 into a format useable for science with flarestack. The data files
 themselves are duplicates of those provided at:

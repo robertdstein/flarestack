@@ -63,7 +63,7 @@ class EnergyPDF(object):
     A base class for Energy PDFs.
     """
 
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, e_pdf_dict):
         """

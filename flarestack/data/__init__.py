@@ -188,7 +188,7 @@ class Season:
         exp = append_fields(exp, "weight", weight, usemask=False, dtypes=[float]).copy()
         return exp
 
-    def get_background_model(self, **kwargs):
+    def get_background_model(self) -> dict:
         """Generic Function to return background model. This could be
         the experimental data (if the signal contamination is small),
         or a weighted MC dataset. By default, uses data."""

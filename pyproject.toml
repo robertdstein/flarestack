@@ -17,13 +17,13 @@ classifiers = [
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.8, <3.12"
+python = ">=3.9, <3.12"
 astropy = "^5.1"
 black = "^23"
 coveralls = "^3.3.1"
@@ -46,6 +46,10 @@ sphinx-rtd-theme = "^1.0.0"
 myst-parser = "^0.18.0"
 nbsphinx = ">=0.8.9,<0.10.0"
 myst-nb = ">=0.16,<0.18"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
 
 [build-system]
 requires = ["poetry-core>=1.2.0"]

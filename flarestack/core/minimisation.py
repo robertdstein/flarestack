@@ -93,10 +93,10 @@ class MinimisationHandler(object):
     the injector and the likelihood.
     """
 
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     # Each MinimisationHandler must specify which LLH classes are compatible
-    compatible_llh = []
+    compatible_llh: list[str] = []
     compatible_negative_n_s = False
 
     def __init__(self, mh_dict):

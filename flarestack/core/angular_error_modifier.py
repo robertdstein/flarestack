@@ -34,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 
 class BaseFloorClass(object):
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, floor_dict):
         self.floor_dict = floor_dict
@@ -149,7 +149,7 @@ class BaseQuantileFloor(BaseFloorClass):
         if not os.path.isfile(self.pickle_name):
             self.create_pickle()
         else:
-            logger.debug("Loading from".format(self.pickle_name))
+            logger.debug(f"Loading from {self.pickle_name}")
 
         with open(self.pickle_name, "r") as f:
             pickled_data = Pickle.load(f)
@@ -182,6 +182,9 @@ class QuantileFloorEParam0D(BaseQuantileFloor, BaseDynamicFloorClass):
         return lambda data, params: np.array([func(params) for _ in data])
 
 
+"""
+# This class has been commented out since its name is redefined below.
+# However, it seems QuantileFloor1D is never explicitly called in the code and is hence likely untested.
 @BaseFloorClass.register_subclass("quantile_floor_1d")
 class QuantileFloor1D(BaseQuantileFloor, BaseStaticFloor):
     def create_pickle(self):
@@ -190,6 +193,7 @@ class QuantileFloor1D(BaseQuantileFloor, BaseStaticFloor):
     def create_function(self, pickled_array):
         func = interp1d(pickled_array[0], pickled_array[1])
         return lambda data, params: func(data["logE"])
+"""
 
 
 @BaseFloorClass.register_subclass("quantile_floor_1d_e")
@@ -212,7 +216,7 @@ class QuantileFloor1D(BaseQuantileFloor, BaseDynamicFloorClass):
 
 
 class BaseAngularErrorModifier(object):
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, pull_dict):
         self.season = pull_dict["season"]
@@ -245,7 +249,7 @@ class BaseAngularErrorModifier(object):
         e_pdf_dict,
         floor_name="static_floor",
         aem_name="no_modifier",
-        **kwargs
+        **kwargs,
     ):
         pull_dict = dict()
         pull_dict["season"] = season
@@ -335,7 +339,7 @@ class BaseMedianAngularErrorModifier(BaseAngularErrorModifier):
         if not os.path.isfile(self.pull_name):
             self.create_pickle()
         else:
-            logger.debug("Loading from".format(self.pull_name))
+            logger.debug(f"Loading from {self.pull_name}")
 
         with open(self.pull_name, "r") as f:
             self.pickled_data = Pickle.load(f)
@@ -466,6 +470,9 @@ class MedianPullEParam2D(DynamicMedianPullCorrector):
         return lambda data: func(data["logE"], data["sinDec"])
 
 
+"""
+# NOTE: `mypy` allowed to find some deprecations in the following __main__ block that were never noticed before, because the block is not part of any testing routine. It should be checked whether equivalent code is covered by an unit test, before removing the (now commented) block altogether.
+
 if __name__ == "__main__":
     from flarestack.data.icecube.ps_tracks.ps_v002_p01 import IC86_1_dict
     from flarestack.analyses.angular_error_floor.plot_bias import (
@@ -530,3 +537,4 @@ if __name__ == "__main__":
 # for gamma in np.linspace(1.0, 4.0, 4):
 #     print data_loader(IC86_1_dict["exp_path"])["logE"][:8]
 #     print np.degrees(x.f(data_loader(IC86_1_dict["exp_path"])[:8], [gamma]))
+"""

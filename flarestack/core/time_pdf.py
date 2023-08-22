@@ -2,6 +2,7 @@ import logging
 import numpy as np
 from scipy.interpolate import interp1d
 
+
 logger = logging.getLogger(__name__)
 
 
@@ -94,8 +95,8 @@ def read_t_pdf_dict(t_pdf_dict):
     return t_pdf_dict
 
 
-class TimePDF(object):
-    subclasses = {}
+class TimePDF:
+    subclasses: dict[str, object] = {}
 
     def __init__(self, t_pdf_dict, livetime_pdf=None):
         self.t_dict = t_pdf_dict

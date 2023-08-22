@@ -32,7 +32,7 @@ class SpatialPDF:
 class SignalSpatialPDF:
     """Base Signal Spatial PDF class."""
 
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, spatial_pdf_dict):
         pass
@@ -202,7 +202,7 @@ class CircularGaussian(SignalSpatialPDF):
 
 
 class BackgroundSpatialPDF:
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, spatial_pdf_dict, season):
         pass

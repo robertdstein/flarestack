@@ -102,11 +102,14 @@ n_sig = 4
 n_bkg = 6
 
 
-s_t = []
+s_t_list = []
 
 for i, t in enumerate(np.random.uniform(0, 1.0, n_sig)):
-    s_t.append((t + float(i)) * 25)
-s_t = np.array(s_t)
+    s_t_list.append((t + float(i)) * 25)
+
+s_t = np.array(s_t_list)
+del s_t_list
+
 bkg_t = np.random.uniform(0, 1.0, n_bkg) * 100
 
 all_t = np.concatenate((s_t, bkg_t))

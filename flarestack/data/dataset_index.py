@@ -15,7 +15,7 @@ class DatasetIndex:
 
     def __init__(self) -> None:
         """constructor"""
-        self.index = dict()
+        self.index: dict[str, Dataset] = dict()
 
     def add_dataset(self, dataset: Dataset) -> None:
         """adds a dataset to the index
@@ -26,19 +26,21 @@ class DatasetIndex:
         """
         self.index[dataset.name] = dataset
 
-    def add_alias(self, alias: str, name: str) -> None:
-        """adds an alias for a dataset
-
-        Args:
-            alias (str): alias name
-            name (str): dataset name
-        """
-        dest = self.index[name]
-        if isinstance(dest, Dataset):
-            self.index[alias] = name
-        else:
-            logger.warning("f{name} is already an alias, aliasing {dest} instead.")
-            self.index[alias] = dest
+    # supporting aliases does not play well with the typing consistency of dataset_index
+    # tentatively comment out this logic, can be removed at a later stage
+    # def add_alias(self, alias: str, name: str) -> None:
+    #     """adds an alias for a dataset
+    #
+    #     Args:
+    #         alias (str): alias name
+    #         name (str): dataset name
+    #     """
+    #     dest = self.index[name]
+    #     if isinstance(dest, Dataset):
+    #         self.index[alias] = name
+    #     else:
+    #         logger.warning("f{name} is already an alias, aliasing {dest} instead.")
+    #         self.index[alias] = dest
 
     def get_dataset(self, name: str) -> Dataset:
         """retrieve a dataset by name

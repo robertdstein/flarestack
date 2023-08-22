@@ -1,3 +1,9 @@
+# type: ignore
+
+# exclude this file from `mypy` checking since the dataset "nt_v002_p01" can no longer be imported
+# this also implies that this file is currently untested, otherwise such a test would fail
+# if in the future this script is updated to use a new data set, remove the `type: ignore` comment
+
 import os
 import matplotlib.pyplot as plt
 from flarestack.data.icecube.northern_tracks.nt_v002_p01 import diffuse_8year

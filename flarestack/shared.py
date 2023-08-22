@@ -6,6 +6,7 @@ import json
 import zlib
 import logging
 from pathlib import Path
+from typing import Optional
 
 logger = logging.getLogger(__name__)
 
@@ -115,12 +116,12 @@ for dirname in all_dirs:
 
 host = socket.getfqdn()
 
+host_server: Optional[str] = None
+
 if np.logical_or("ifh.de" in host, "zeuthen.desy.de" in host):
     host_server = "DESY"
 elif "icecube.wisc.edu" in host:
     host_server = "WIPAC"
-else:
-    host_server = None
 
 # gamma_range = [1., 4.]
 # gamma_precision = .025

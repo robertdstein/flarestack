@@ -64,7 +64,7 @@ def read_injector_dict(inj_dict):
 class BaseInjector:
     """Base Injector Class"""
 
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, season, sources, **kwargs):
         kwargs = read_injector_dict(kwargs)
@@ -224,7 +224,7 @@ class MCInjector(BaseInjector):
     background. This can be either MC background, or scrambled real data.
     """
 
-    subclasses = {}
+    subclasses: dict[str, object] = {}
 
     def __init__(self, season, sources, **kwargs):
         kwargs = read_injector_dict(kwargs)

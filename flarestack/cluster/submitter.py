@@ -1,6 +1,15 @@
+import copy
 import json
-import os, subprocess, time, logging, shutil, copy, sys
+import logging
 import numpy as np
+import os
+from pathlib import Path
+import shutil
+import subprocess
+import sys
+import time
+from typing import Optional
+
 from flarestack.shared import (
     fs_dir,
     log_dir,
@@ -15,14 +24,14 @@ from flarestack.core.multiprocess_wrapper import run_multiprocess
 from flarestack.core.minimisation import MinimisationHandler
 from flarestack.core.results import ResultsHandler
 
-from pathlib import Path
-
 
 logger = logging.getLogger(__name__)
 
 
 class Submitter(object):
-    submitter_dict = dict()
+    # in other modules, such attribute is called 'subclass'
+    # is this functionally different?
+    submitter_dict: dict[str, object] = dict()
 
     def __init__(
         self,
@@ -302,7 +311,7 @@ class HTCondorSubmitter(Submitter):
 
     # Log path
     log_path = Path(log_dir)
-    override_log_path = None
+    override_log_path: Optional[Path] = None
 
     def __init__(self, *args, **kwargs):
         """

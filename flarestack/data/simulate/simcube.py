@@ -236,19 +236,23 @@ for name, season in icecube_ps_3_year.get_seasons().items():
 
     simcube_dataset.add_sim_season(name, wrapper_f)
 
-bkg_time_pdf_dict = {
-    "time_pdf_name": "fixed_ref_box",
-    "fixed_ref_time_mjd": 50000,
-    "pre_window": 0.0,
-    "post_window": 500.0,
-}
+# after mypy: it seems the following block of code is not compatible with the current syntax of `simcube_dataset.set_sim_params()`
+# - error: Missing positional argument "bkg_flux_model" in call to "set_sim_params"  [call-arg]
+# this implies this module is likely untested, otherwise such a test would fail
+# the following is commented out, for the time being
 
-simcube_season = simcube_dataset.set_sim_params(
-    name="IC86-2012",
-    bkg_time_pdf_dict=bkg_time_pdf_dict,
-    bkg_flux_norm=1e8,
-    bkg_e_pdf_dict=bkg_e_pdf_dict,
-)
+# bkg_time_pdf_dict = {
+#     "time_pdf_name": "fixed_ref_box",
+#     "fixed_ref_time_mjd": 50000,
+#     "pre_window": 0.0,
+#     "post_window": 500.0,
+# }
+#
+# simcube_season = simcube_dataset.set_sim_params(
+#     name="IC86-2012",
+#     bkg_time_pdf_dict=bkg_time_pdf_dict,
+#     bkg_flux_norm=1e8,
+#     bkg_e_pdf_dict=bkg_e_pdf_dict,
+# )
 
 # nicecube_10year = SimCubeSeason(0, 100, 1., e_pdf_dict)
-#

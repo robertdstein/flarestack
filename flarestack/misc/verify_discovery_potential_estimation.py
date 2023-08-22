@@ -1,3 +1,9 @@
+# type: ignore
+
+# exclude this file from `mypy` checking since the current implementation of `AsimovEstimator` is not compatible with the syntax used here.
+# this also implies that this file is currently untested, otherwise such a test would fail
+# if in the future its functionality is restored, remove the `type: ignore` comment
+
 import numpy as np
 import os
 from flarestack.data.icecube.ps_tracks.ps_v002_p01 import ps_v002_p01
@@ -84,7 +90,7 @@ for i, datasets in enumerate(loop_datasets):
             mask = np.ones_like(sindecs, dtype=bool)
 
         else:
-            mask = [sindecs > -0.05]
+            mask = sindecs > -0.05  # after mypy: changed from [sindecs > -0.05]
 
         color = ["r", "blue", "green", "y"][j]
 

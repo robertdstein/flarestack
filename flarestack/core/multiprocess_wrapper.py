@@ -40,7 +40,9 @@ def generate_dynamic_mh_class(mh_dict):
 
 class MultiProcessor:
     queue = None
-    results = dict()
+
+    # this is not used within the class, maybe it can be safely dropped
+    # results = dict()
 
     def __init__(self, n_cpu, **kwargs):
         self.queue = JoinableQueue()
@@ -149,9 +151,15 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO)
 
+    # os.cpu_count() may return None, deal safely with that
+    cpu_count = os.cpu_count()
+    available_cpus = cpu_count if cpu_count is not None else 1
+    # 1 <= n_cpu <= 32
+    n_cpu = min(max(1, available_cpus - 1), 32)
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-f", "--file", help="Path for analysis pkl_file")
-    parser.add_argument("-n", "--n_cpu", default=min(max(1, os.cpu_count() - 1), 32))
+    parser.add_argument("-n", "--n_cpu", default=n_cpu)
     cfg = parser.parse_args()
 
     logger.info(f"N CPU available {os.cpu_count()}. Using {cfg.n_cpu}")

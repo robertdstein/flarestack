@@ -162,9 +162,7 @@ def estimate_discovery_potential(seasons, inj_dict, sources, llh_dict, raw_scale
 
             if len(source_mc) == 0:
                 logging.warning(
-                    "Warning, no MC found for dummy source at declinbation ".format(
-                        np.arcsin(lower), np.arcsin(upper)
-                    )
+                    f"Warning, no MC found for dummy source at declination {np.arcsin(lower)} {np.arcsin(upper)}"
                 )
                 ts_vals.append(0.0)
                 n_sigs.append(0.0)
