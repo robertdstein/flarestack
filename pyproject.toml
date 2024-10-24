@@ -20,10 +20,12 @@ classifiers = [
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9, <3.12"
+python = ">=3.9, <3.14"
 astropy = ">=5.1,<7.0"
 black = ">=23,<25"
 coveralls = ">=3.3.1,<5.0.0"
