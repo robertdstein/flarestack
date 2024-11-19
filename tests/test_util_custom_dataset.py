@@ -22,7 +22,7 @@ class TestUtilCustomDataset(unittest.TestCase):
         logging.info("Testing custom_dataset util function.")
 
         llh_dict = {
-            "llh_name": "standard",
+            "llh_name": "standard_matrix",
             "llh_sig_time_pdf": {
                 "time_pdf_name": "box",
                 "pre_window": 0.0,

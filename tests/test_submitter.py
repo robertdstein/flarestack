@@ -33,7 +33,7 @@ inj_kwargs = {
 llh_energy = injection_energy
 
 llh_kwargs = {
-    "llh_name": "standard",
+    "llh_name": "standard_matrix",
     "llh_energy_pdf": llh_energy,
     "llh_sig_time_pdf": llh_time,
     "llh_bkg_time_pdf": {"time_pdf_name": "steady"},

@@ -43,7 +43,7 @@ class TestTimeIntegrated(unittest.TestCase):
 
         for i, t_pdf_dict in enumerate(time_pdfs):
             llh_dict = {
-                "llh_name": "standard",
+                "llh_name": "standard_matrix",
                 "llh_sig_time_pdf": t_pdf_dict,
                 "llh_bkg_time_pdf": {
                     "time_pdf_name": "steady",

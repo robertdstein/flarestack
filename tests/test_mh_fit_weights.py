@@ -11,7 +11,7 @@ from flarestack import MinimisationHandler, analyse
 # Initialise Injectors/LLHs
 
 llh_dict = {
-    "llh_name": "standard",
+    "llh_name": "standard_matrix",
     "llh_sig_time_pdf": {"time_pdf_name": "steady"},
     "llh_bkg_time_pdf": {
         "time_pdf_name": "steady",
